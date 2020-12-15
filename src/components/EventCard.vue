@@ -1,5 +1,5 @@
 <template>
-  <div class="event-card">
+  <div class="event-card" @click="handleEventRoute">
     <span>@ {{ event.time }} on {{ event.date }}</span>
     <h4>{{ event.title }}</h4>
   </div>
@@ -11,8 +11,19 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'EventCard',
   props: {
-    event: String
-  }
+    event: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    handleEventRoute() {
+      this.$router.push({ name: 'EventDetails', params: { id: this.event.id } })
+    }
+  },
 });
 </script>
 
